@@ -27,7 +27,11 @@ print(yesterdays_closing_price)
 print(day_before_yesterdays_closing_price)
 
 difference = abs(float(yesterdays_closing_price) - float(day_before_yesterdays_closing_price))
-print(difference)
+difference_in_percentage = (difference / float(yesterdays_closing_price)) * 100
+print(difference_in_percentage)
+
+if difference_in_percentage > 3:
+    print("Get news")
 
 
 
