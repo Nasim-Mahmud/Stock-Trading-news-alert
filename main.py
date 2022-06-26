@@ -1,3 +1,5 @@
+import requests
+
 STOCK = "TSLA"
 COMPANY_NAME = "Tesla Inc"
 
