@@ -26,7 +26,8 @@ day_before_yesterdays_closing_price = daily_data[dates[2]]["4. close"]
 print(yesterdays_closing_price)
 print(day_before_yesterdays_closing_price)
 
-difference =
+difference = abs(float(yesterdays_closing_price) - float(day_before_yesterdays_closing_price))
+print(difference)
 
 
 
