@@ -1,10 +1,13 @@
 import requests
+import os
 
 STOCK = "TSLA"
 COMPANY_NAME = "Tesla Inc"
 
 STOCK_API_KEY = "2GH6SW5RD8YAW16J"
 STOCK_API = "https://www.alphavantage.co/query"
+
+NEWS_API_KEY = "505436ebfeac44938deadd3fc0db0d53"
 
 ## STEP 1: Use https://www.alphavantage.co
 # When STOCK price increase/decreases by 5% between yesterday and the day before yesterday then print("Get News").
@@ -17,6 +20,7 @@ response = requests.get(STOCK_API, params=parameters)
 response.raise_for_status()
 
 data = response.json()
+print(data)
 daily_data = data["Time Series (Daily)"]
 dates  = list(daily_data)
 
