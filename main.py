@@ -17,7 +17,7 @@ response = requests.get(stock_api, params=parameters)
 response.raise_for_status()
 
 data = response.json()
-print(data)
+daily_data = data["Time Series (Daily)"]
 
 
 
