@@ -34,8 +34,6 @@ if difference_in_percentage > 3:
     print("Get news")
 
 
-
-
 ## STEP 2: Use https://newsapi.org
 # Instead of printing ("Get News"), actually get the first 3 news pieces for the COMPANY_NAME. 
 
