@@ -19,7 +19,7 @@ response.raise_for_status()
 data = response.json()
 daily_data = data["Time Series (Daily)"]
 dates  = list(daily_data)
-print(daily_data[dates[0]]["4. close"])
+print(daily_data[dates[2]]["4. close"])
 
 
 
