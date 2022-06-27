@@ -7,7 +7,7 @@ COMPANY_NAME = "Tesla Inc"
 STOCK_API_KEY = "2GH6SW5RD8YAW16J"
 STOCK_API = "https://www.alphavantage.co/query"
 
-NEWS_API = "https://newsapi.org/v2/top-headlines"
+NEWS_API = "https://newsapi.org/v2/everything"
 NEWS_API_KEY = "505436ebfeac44938deadd3fc0db0d53"
 
 ## STEP 1: Use https://www.alphavantage.co
@@ -41,12 +41,16 @@ if difference_in_percentage > 3:
 ## STEP 2: Use https://newsapi.org
 news_parameters = {
     "apiKey": NEWS_API_KEY,
-    "language": "en",
-    "country": "us",
-    "category": "business",
+    "q" : COMPANY_NAME,
+    "sortBy": "popularity",
+    # "category": "business",
 }
 # Instead of printing ("Get News"), actually get the first 3 news pieces for the COMPANY_NAME. 
+news_response = requests.get(NEWS_API, params=news_parameters)
+news_response.raise_for_status()
 
+news_data = news_response.json()
+print(news_data)
 ## STEP 3: Use https://www.twilio.com
 # Send a seperate message with the percentage change and each article's title and description to your phone number. 
 
