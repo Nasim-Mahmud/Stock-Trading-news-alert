@@ -1,18 +1,19 @@
-import os
 from twilio.rest import Client
 import requests
 
 STOCK = "TSLA"
 COMPANY_NAME = "Tesla Inc"
 
-STOCK_API_KEY = "2GH6SW5RD8YAW16J"
+# API keys
+STOCK_API_KEY = "[STOCK_API_KEY]"
+NEWS_API_KEY = "[NEWS_API_KEY]"
+TWILIO_AUTH_TOKEN = "[TWILIO_AUTH_TOKEN]"
+
+# APIs'
 STOCK_API = "https://www.alphavantage.co/query"
-
 NEWS_API = "https://newsapi.org/v2/everything"
-NEWS_API_KEY = "505436ebfeac44938deadd3fc0db0d53"
-
 TWILIO_ACCOUNT_SID = "ACc65f7f168ddb0c92bbc38453d0e57978"
-TWILIO_AUTH_TOKEN = "b7724ecc58f0e06dbfb287372512d6a2"
+
 
 ## STEP 1: Use https://www.alphavantage.co
 # When STOCK price increase/decreases by 5% between yesterday and the day before yesterday then print("Get News").
@@ -69,8 +70,8 @@ if difference_in_percentage > 3 or difference_in_percentage < 3:
         message = client.messages \
             .create(
             body=article,
-            from_="+19783893832",  # Got the number from Twilio.
-            to="+8801884331851"
+            from_="[YOUR_TWILIO_NUMBER]",  # Got the number from Twilio.
+            to="[YOUR_TWILIO_REGISTERED_PHONE_NUMBER]"
         )
         print(message.status)
         print(article)
