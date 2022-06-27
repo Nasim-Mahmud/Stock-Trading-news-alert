@@ -64,7 +64,7 @@ if difference_in_percentage > 3 or difference_in_percentage < 3:
 
         excluded_string = ' <a href="https://www.reuters.com/companies/TSLA.O" target="_blank">(TSLA.O)</a>'
         article = f'{STOCK}:{icon}{round(difference_in_percentage, 2)}%' \
-                  f'\nHeadline:{news_data[n]["title"]}' \
+                  f'\nHeadline: {news_data[n]["title"]}' \
                   f'\nBrief: {news_data[n]["description"].replace(excluded_string, "")}'
         client = Client(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
         message = client.messages \
@@ -75,3 +75,14 @@ if difference_in_percentage > 3 or difference_in_percentage < 3:
         )
         print(message.status)
         print(article)
+
+# Optional: Format the SMS message like this:
+"""
+TSLA: 🔺2%
+Headline: Were Hedge Funds Right About Piling Into Tesla Inc. (TSLA)?. 
+Brief: We at Insider Monkey have gone over 821 13F filings that hedge funds and prominent investors are required to file by the SEC The 13F filings show the funds' and investors' portfolio positions as of March 31st, near the height of the coronavirus market crash.
+or
+"TSLA: 🔻5%
+Headline: Were Hedge Funds Right About Piling Into Tesla Inc. (TSLA)?. 
+Brief: We at Insider Monkey have gone over 821 13F filings that hedge funds and prominent investors are required to file by the SEC The 13F filings show the funds' and investors' portfolio positions as of March 31st, near the height of the coronavirus market crash.
+"""
