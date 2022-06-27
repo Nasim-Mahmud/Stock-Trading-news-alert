@@ -67,8 +67,7 @@ if difference_in_percentage > 3 or difference_in_percentage < 3:
                   f'\nBrief: {news_data[n]["description"].replace(excluded_string, "")}'
         client = Client(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
         message = client.messages \
-            .create(body=article,
-            from_="[YOUR_TWILIO_NUMBER]",  # Got the number from Twilio.
+            .create(body=article, from_="[YOUR_TWILIO_NUMBER]",  # Got the number from Twilio.
             to="[YOUR_TWILIO_REGISTERED_PHONE_NUMBER]"
         )
         print(message.status)
