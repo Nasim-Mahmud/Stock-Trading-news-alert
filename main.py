@@ -7,24 +7,25 @@ COMPANY_NAME = "Tesla Inc"
 STOCK_API_KEY = "2GH6SW5RD8YAW16J"
 STOCK_API = "https://www.alphavantage.co/query"
 
+NEWS_API = "https://newsapi.org/v2/top-headlines"
 NEWS_API_KEY = "505436ebfeac44938deadd3fc0db0d53"
 
 ## STEP 1: Use https://www.alphavantage.co
 # When STOCK price increase/decreases by 5% between yesterday and the day before yesterday then print("Get News").
-parameters = {
+stock_parameters = {
     "function": "TIME_SERIES_DAILY",
     "symbol": STOCK,
     "apikey": STOCK_API_KEY,
 }
-response = requests.get(STOCK_API, params=parameters)
+response = requests.get(STOCK_API, params=stock_parameters)
 response.raise_for_status()
 
-data = response.json()
-daily_data = data["Time Series (Daily)"]
-dates  = list(daily_data)
+stock_data = response.json()
+stock_daily_data = stock_data["Time Series (Daily)"]
+dates  = list(stock_daily_data)
 
-yesterdays_closing_price = daily_data[dates[1]]["4. close"]
-day_before_yesterdays_closing_price = daily_data[dates[2]]["4. close"]
+yesterdays_closing_price = stock_daily_data[dates[1]]["4. close"]
+day_before_yesterdays_closing_price = stock_daily_data[dates[2]]["4. close"]
 
 print(yesterdays_closing_price)
 print(day_before_yesterdays_closing_price)
@@ -38,6 +39,12 @@ if difference_in_percentage > 3:
 
 
 ## STEP 2: Use https://newsapi.org
+news_parameters = {
+    "apiKey": NEWS_API_KEY,
+    "language": "en",
+    "country": "us",
+    "category": "business",
+}
 # Instead of printing ("Get News"), actually get the first 3 news pieces for the COMPANY_NAME. 
 
 ## STEP 3: Use https://www.twilio.com
