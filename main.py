@@ -1,6 +1,7 @@
-import twilio
-import requests
 import os
+from twilio.rest import Client
+import requests
+
 
 STOCK = "TSLA"
 COMPANY_NAME = "Tesla Inc"
@@ -52,6 +53,7 @@ news_response.raise_for_status()
 
 news_data = news_response.json()["articles"]
 print(news_data[0])
+
 ## STEP 3: Use https://www.twilio.com
 # Send a seperate message with the percentage change and each article's title and description to your phone number. 
 
