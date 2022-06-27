@@ -49,8 +49,8 @@ news_parameters = {
 news_response = requests.get(NEWS_API, params=news_parameters)
 news_response.raise_for_status()
 
-news_data = news_response.json()
-print(news_data)
+news_data = news_response.json()["articles"]
+print(news_data[0])
 ## STEP 3: Use https://www.twilio.com
 # Send a seperate message with the percentage change and each article's title and description to your phone number. 
 
