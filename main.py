@@ -35,7 +35,14 @@ difference = abs(float(yesterdays_closing_price) - float(day_before_yesterdays_c
 difference_in_percentage = (difference / float(yesterdays_closing_price)) * 100
 # print(difference_in_percentage)
 
+if difference_in_percentage > 3:
+    icon = "🔺"
+elif difference_in_percentage < 3:
+    icon = "🔻"
+
+
 if difference_in_percentage > 3 or difference_in_percentage < 3:
+
     ## STEP 2: Use https://newsapi.org
     news_parameters = {
         "apiKey": NEWS_API_KEY,
@@ -50,20 +57,18 @@ if difference_in_percentage > 3 or difference_in_percentage < 3:
     news_data = news_response.json()["articles"]
     for n in range(0, 3):
         print(news_data[n]["title"])
+
         ## STEP 3: Use https://www.twilio.com
         # Send a separate message with the percentage change and each article's title and description to your phone number.
-
+        article = f'TSLA:{icon}{round(difference_in_percentage)}\nHeadline:{news_data[n]["title"]}\n Brief: {news_data[n]["description"]}'
         client = Client(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
         message = client.messages \
             .create(
-            body=f'Headline:{news_data[n]["title"]}\n Brief: {news_data[n]["description"]}',
+            body=article,
             from_="+19783893832",  # Got the number from Twilio.
             to="+8801884331851"
         )
         print(message.status)
-## STEP 3: Use https://www.twilio.com
-# Send a separate message with the percentage change and each article's title and description to your phone number.
-
 
 # Optional: Format the SMS message like this:
 """
