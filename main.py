@@ -65,14 +65,14 @@ if difference_in_percentage > 3 or difference_in_percentage < 3:
         article = f'{STOCK}:{icon}{round(difference_in_percentage, 2)}%' \
                   f'\nHeadline:{news_data[n]["title"]}' \
                   f'\nBrief: {news_data[n]["description"].replace(excluded_string, "")}'
-        # client = Client(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
-        # message = client.messages \
-        #     .create(
-        #     body=article,
-        #     from_="+19783893832",  # Got the number from Twilio.
-        #     to="+8801884331851"
-        # )
-        # print(message.status)
+        client = Client(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
+        message = client.messages \
+            .create(
+            body=article,
+            from_="+19783893832",  # Got the number from Twilio.
+            to="+8801884331851"
+        )
+        print(message.status)
         print(article)
 
 # Optional: Format the SMS message like this:
