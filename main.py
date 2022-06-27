@@ -40,10 +40,10 @@ if difference_in_percentage > 3:
 elif difference_in_percentage < 3:
     icon = "🔻"
 
-
 if difference_in_percentage > 3 or difference_in_percentage < 3:
 
     ## STEP 2: Use https://newsapi.org
+
     news_parameters = {
         "apiKey": NEWS_API_KEY,
         "q": COMPANY_NAME,
@@ -58,17 +58,22 @@ if difference_in_percentage > 3 or difference_in_percentage < 3:
     for n in range(0, 3):
         print(news_data[n]["title"])
 
-        ## STEP 3: Use https://www.twilio.com
-        # Send a separate message with the percentage change and each article's title and description to your phone number.
-        article = f'TSLA:{icon}{round(difference_in_percentage)}\nHeadline:{news_data[n]["title"]}\n Brief: {news_data[n]["description"]}'
-        client = Client(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
-        message = client.messages \
-            .create(
-            body=article,
-            from_="+19783893832",  # Got the number from Twilio.
-            to="+8801884331851"
-        )
-        print(message.status)
+        # # STEP 3: Use https://www.twilio.com Send a separate message with the percentage change and each article's
+        # title and description to your phone number.
+
+        excluded_string = ' <a href="https://www.reuters.com/companies/TSLA.O" target="_blank">(TSLA.O)</a>'
+        article = f'{STOCK}:{icon}{round(difference_in_percentage, 2)}%' \
+                  f'\nHeadline:{news_data[n]["title"]}' \
+                  f'\nBrief: {news_data[n]["description"].replace(excluded_string, "")}'
+        # client = Client(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
+        # message = client.messages \
+        #     .create(
+        #     body=article,
+        #     from_="+19783893832",  # Got the number from Twilio.
+        #     to="+8801884331851"
+        # )
+        # print(message.status)
+        print(article)
 
 # Optional: Format the SMS message like this:
 """
