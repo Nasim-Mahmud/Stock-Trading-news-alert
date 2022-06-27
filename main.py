@@ -14,7 +14,6 @@ STOCK_API = "https://www.alphavantage.co/query"
 NEWS_API = "https://newsapi.org/v2/everything"
 TWILIO_ACCOUNT_SID = "[YOUR_TWILIO_ACCOUNT_SID]"
 
-
 ## STEP 1: Use https://www.alphavantage.co
 # When STOCK price increase/decreases by 5% between yesterday and the day before yesterday then print("Get News").
 stock_parameters = {
@@ -68,8 +67,7 @@ if difference_in_percentage > 3 or difference_in_percentage < 3:
                   f'\nBrief: {news_data[n]["description"].replace(excluded_string, "")}'
         client = Client(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
         message = client.messages \
-            .create(
-            body=article,
+            .create(body=article,
             from_="[YOUR_TWILIO_NUMBER]",  # Got the number from Twilio.
             to="[YOUR_TWILIO_REGISTERED_PHONE_NUMBER]"
         )
