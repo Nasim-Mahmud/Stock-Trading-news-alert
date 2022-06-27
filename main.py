@@ -12,7 +12,7 @@ TWILIO_AUTH_TOKEN = "[TWILIO_AUTH_TOKEN]"
 # APIs'
 STOCK_API = "https://www.alphavantage.co/query"
 NEWS_API = "https://newsapi.org/v2/everything"
-TWILIO_ACCOUNT_SID = "ACc65f7f168ddb0c92bbc38453d0e57978"
+TWILIO_ACCOUNT_SID = "[YOUR_TWILIO_ACCOUNT_SID]"
 
 
 ## STEP 1: Use https://www.alphavantage.co
