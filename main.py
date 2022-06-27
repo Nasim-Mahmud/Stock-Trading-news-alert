@@ -14,7 +14,7 @@ STOCK_API = "https://www.alphavantage.co/query"
 NEWS_API = "https://newsapi.org/v2/everything"
 TWILIO_ACCOUNT_SID = "[YOUR_TWILIO_ACCOUNT_SID]"
 
-## STEP 1: Use https://www.alphavantage.co
+# STEP 1: Use https://www.alphavantage.co
 # When STOCK price increase/decreases by 5% between yesterday and the day before yesterday then print("Get News").
 stock_parameters = {
     "function": "TIME_SERIES_DAILY",
@@ -42,7 +42,7 @@ elif difference_in_percentage < 3:
 
 if difference_in_percentage > 3 or difference_in_percentage < 3:
 
-    ## STEP 2: Use https://newsapi.org
+    # STEP 2: Use https://newsapi.org
 
     news_parameters = {
         "apiKey": NEWS_API_KEY,
@@ -58,7 +58,7 @@ if difference_in_percentage > 3 or difference_in_percentage < 3:
     for n in range(0, 3):
         print(news_data[n]["title"])
 
-        # # STEP 3: Use https://www.twilio.com Send a separate message with the percentage change and each article's
+        # STEP 3: Use https://www.twilio.com Send a separate message with the percentage change and each article's
         # title and description to your phone number.
 
         excluded_string = ' <a href="https://www.reuters.com/companies/TSLA.O" target="_blank">(TSLA.O)</a>'
@@ -68,18 +68,8 @@ if difference_in_percentage > 3 or difference_in_percentage < 3:
         client = Client(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
         message = client.messages \
             .create(body=article, from_="[YOUR_TWILIO_NUMBER]",  # Got the number from Twilio.
-            to="[YOUR_TWILIO_REGISTERED_PHONE_NUMBER]"
-        )
+                    to="[YOUR_TWILIO_REGISTERED_PHONE_NUMBER]"
+                    )
         print(message.status)
         print(article)
 
-# Optional: Format the SMS message like this:
-"""
-TSLA: 🔺2%
-Headline: Were Hedge Funds Right About Piling Into Tesla Inc. (TSLA)?. 
-Brief: We at Insider Monkey have gone over 821 13F filings that hedge funds and prominent investors are required to file by the SEC The 13F filings show the funds' and investors' portfolio positions as of March 31st, near the height of the coronavirus market crash.
-or
-"TSLA: 🔻5%
-Headline: Were Hedge Funds Right About Piling Into Tesla Inc. (TSLA)?. 
-Brief: We at Insider Monkey have gone over 821 13F filings that hedge funds and prominent investors are required to file by the SEC The 13F filings show the funds' and investors' portfolio positions as of March 31st, near the height of the coronavirus market crash.
-"""
