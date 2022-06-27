@@ -50,14 +50,14 @@ if difference_in_percentage > 3 or difference_in_percentage < 3:
     news_data = news_response.json()["articles"]
     for n in range(0, 3):
         print(news_data[n]["title"])
-    client = Client(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
-    message = client.messages \
-        .create(
-        body="It may rain today! Bring an umbrella.",
-        from_="[TWILIO_PROVIDED_NUMBER]",  # Got the number from Twilio.
-        to="[PHONE_NUMBER_YOU_REGISTERED_WHILE_CREATING_TWILIO_ACCOUNT]"
-    )
-    print(message.status)
+        client = Client(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
+        message = client.messages \
+            .create(
+            body=f'Headline:{news_data[n]["title"]}\n Brief: {news_data[n]["description"]}',
+            from_="+19783893832",  # Got the number from Twilio.
+            to="+8801884331851"
+        )
+        print(message.status)
 ## STEP 3: Use https://www.twilio.com
 # Send a separate message with the percentage change and each article's title and description to your phone number.
 
