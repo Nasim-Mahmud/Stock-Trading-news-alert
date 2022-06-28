@@ -21,6 +21,7 @@ stock_parameters = {
     "symbol": STOCK,
     "apikey": STOCK_API_KEY,
 }
+
 response = requests.get(STOCK_API, params=stock_parameters)
 response.raise_for_status()
 
