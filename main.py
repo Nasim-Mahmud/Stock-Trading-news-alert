@@ -72,4 +72,3 @@ if difference_in_percentage > 3 or difference_in_percentage < 3:
                     )
         print(message.status)
         print(article)
-
