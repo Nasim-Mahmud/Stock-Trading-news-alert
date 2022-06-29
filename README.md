@@ -12,4 +12,4 @@ This project will look up the stock price of the company you choose from the pre
 
 Note that there is a cost associated with this functionality. During the trial period, you can send and receive up to $15 worth of messages to try it out. After that, if you want to keep using the service, you must pay for it.
 
-Happy Coding! :D
+Happy Coding! 😁
